@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des masques</title>
+    <style>
+        table, tr, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <a th:href="@{/masque}">Home</a><br>
+    <a th:href="@{/addMasque}">Ajouter un masque</a><br>
+    <form th:action="@{/masque/recherche}" method="GET">
+        <label for="themeSeach">Theme :</label>
+        <input type="text" id="themeSeach" name="theme"/>
+        <button type="submit">Rechercher</button>
+    </form>
+    <a th:href="@{/masque/resultats}">Résultat concours</a>
+
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Nom du créateur</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="m : ${masques}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.nomCreateur}"></td>
+                <td>
+                    <a th:href="@{/masque/{id}(id=${m.id})}">Détails</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
